@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     // Set loaded state after component mounts
@@ -43,6 +46,7 @@ const HeroSection = () => {
             '{"event":"command","func":"playVideo","args":""}',
             '*'
           );
+          setIsPlaying(true);
         } catch (error) {
           console.log("Error playing video:", error);
         }
@@ -75,6 +79,48 @@ const HeroSection = () => {
     };
   }, [videoLoaded]);
 
+  const togglePlayPause = () => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      try {
+        if (isPlaying) {
+          iframeRef.current.contentWindow.postMessage(
+            '{"event":"command","func":"pauseVideo","args":""}',
+            '*'
+          );
+        } else {
+          iframeRef.current.contentWindow.postMessage(
+            '{"event":"command","func":"playVideo","args":""}',
+            '*'
+          );
+        }
+        setIsPlaying(!isPlaying);
+      } catch (error) {
+        console.log("Error toggling video:", error);
+      }
+    }
+  };
+
+  const toggleMute = () => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      try {
+        if (isMuted) {
+          iframeRef.current.contentWindow.postMessage(
+            '{"event":"command","func":"unMute","args":""}',
+            '*'
+          );
+        } else {
+          iframeRef.current.contentWindow.postMessage(
+            '{"event":"command","func":"mute","args":""}',
+            '*'
+          );
+        }
+        setIsMuted(!isMuted);
+      } catch (error) {
+        console.log("Error toggling mute:", error);
+      }
+    }
+  };
+
   // Parallax effect values
   const titleY = scrollY * 0.2;
   const subtitleY = scrollY * 0.3;
@@ -95,6 +141,34 @@ const HeroSection = () => {
           ></iframe>
         </div>
         <div className="absolute inset-0 bg-overwatch-blue-dark/60 mix-blend-multiply"></div>
+        
+        {/* Video controls */}
+        <div className="absolute bottom-4 right-4 flex gap-2 z-20">
+          <button 
+            onClick={togglePlayPause}
+            className="bg-overwatch-blue-dark/80 hover:bg-overwatch-orange/80 p-2 rounded-full transition-colors duration-300 backdrop-blur-sm"
+            aria-label={isPlaying ? "Dừng video" : "Phát video"}
+            title={isPlaying ? "Dừng video" : "Phát video"}
+          >
+            {isPlaying ? (
+              <Pause className="w-5 h-5 text-white" />
+            ) : (
+              <Play className="w-5 h-5 text-white" />
+            )}
+          </button>
+          <button 
+            onClick={toggleMute}
+            className="bg-overwatch-blue-dark/80 hover:bg-overwatch-orange/80 p-2 rounded-full transition-colors duration-300 backdrop-blur-sm"
+            aria-label={isMuted ? "Bật âm thanh" : "Tắt âm thanh"}
+            title={isMuted ? "Bật âm thanh" : "Tắt âm thanh"}
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5 text-white" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-white" />
+            )}
+          </button>
+        </div>
         
         {/* Overlay geometric shapes - Overwatch style */}
         <div className="absolute inset-0">
