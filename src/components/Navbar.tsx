@@ -55,6 +55,22 @@ const Navbar = () => {
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
                 </a>
+                
+                {/* Dropdown menu */}
+                <div className="absolute left-0 mt-0 w-48 bg-overwatch-blue-dark/95 backdrop-blur-sm rounded-b-md overflow-hidden transform scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-200 ease-in-out shadow-xl">
+                  <a 
+                    href="/game-info/overview" 
+                    className="block px-4 py-3 font-sans uppercase text-[14px] text-white hover:bg-overwatch-blue/20 tracking-widest transition-colors"
+                  >
+                    OVERVIEW
+                  </a>
+                  <a 
+                    href="/game-info/media" 
+                    className="block px-4 py-3 font-sans uppercase text-[14px] text-white hover:bg-overwatch-blue/20 tracking-widest transition-colors"
+                  >
+                    MEDIA
+                  </a>
+                </div>
               </li>
 
               <li>
@@ -81,9 +97,6 @@ const Navbar = () => {
                   className="block px-4 py-8 font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors flex items-center"
                 >
                   SUPPORT
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 w-3 h-3">
-                    <path d="m6 9 6 6 6-6"/>
-                  </svg>
                 </a>
               </li>
 
@@ -93,9 +106,7 @@ const Navbar = () => {
                   className="block px-4 py-8 font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors flex items-center"
                 >
                   OUR SOCIALS
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 w-3 h-3">
-                    <path d="m6 9 6 6 6-6"/>
-                  </svg>
+                  
                 </a>
               </li>
 
@@ -146,6 +157,24 @@ const Navbar = () => {
                 >
                   GAME INFO
                 </a>
+                <ul className="pl-6 space-y-2 mt-2">
+                  <li>
+                    <a
+                      href="/game-info/overview"
+                      className="font-sans uppercase text-[13px] text-white/80 hover:text-overwatch-blue tracking-widest transition-colors block py-2"
+                    >
+                      OVERVIEW
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/game-info/media"
+                      className="font-sans uppercase text-[13px] text-white/80 hover:text-overwatch-blue tracking-widest transition-colors block py-2"
+                    >
+                      MEDIA
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li>
                 <a
