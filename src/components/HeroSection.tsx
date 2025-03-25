@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     // Set loaded state after component mounts
@@ -15,8 +17,63 @@ const HeroSection = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    // Add window message listener for YouTube API events
+    const handleMessage = (event: MessageEvent) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.event === 'onReady') {
+          // Video is ready, try to play it
+          playVideo();
+          setVideoLoaded(true);
+        }
+      } catch (e) {
+        // Not a JSON message or not from YouTube, ignore
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    // Force video to play on load
+    const playVideo = () => {
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        try {
+          // Try to play using YouTube iframe API
+          iframeRef.current.contentWindow.postMessage(
+            '{"event":"command","func":"playVideo","args":""}',
+            '*'
+          );
+        } catch (error) {
+          console.log("Error playing video:", error);
+        }
+      }
+    };
+
+    // Try multiple times with increasing delays
+    const playTimers = [
+      setTimeout(playVideo, 1000),
+      setTimeout(playVideo, 2000),
+      setTimeout(playVideo, 3000)
+    ];
+
+    // Reload iframe if video doesn't load after 5 seconds
+    const reloadTimer = setTimeout(() => {
+      if (!videoLoaded && iframeRef.current) {
+        const src = iframeRef.current.src;
+        iframeRef.current.src = '';
+        setTimeout(() => {
+          if (iframeRef.current) iframeRef.current.src = src;
+        }, 100);
+      }
+    }, 5000);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('message', handleMessage);
+      playTimers.forEach(timer => clearTimeout(timer));
+      clearTimeout(reloadTimer);
+    };
+  }, [videoLoaded]);
 
   // Parallax effect values
   const titleY = scrollY * 0.2;
@@ -28,6 +85,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="relative w-full h-full pt-[56.25%]">
           <iframe
+            ref={iframeRef}
             className="absolute top-0 left-0 w-full h-full"
             src="https://www.youtube.com/embed/UOxkGD8qRB4?autoplay=1&mute=0&loop=1&playlist=UOxkGD8qRB4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=http://localhost:3000"
             title="Overwatch 2 Trailer"
