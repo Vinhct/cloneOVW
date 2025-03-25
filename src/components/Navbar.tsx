@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Menu, X, Search } from "lucide-react";
 import Image from "next/image";
 
@@ -30,7 +29,7 @@ const Navbar = () => {
       <div className="h-full mx-auto px-4">
         <div className="flex items-center justify-between h-full">
           {/* Left side - Logo */}
-          <Link href="/" className="relative z-40 flex-shrink-0">
+          <a href="/" className="relative z-40 flex-shrink-0">
             <div className="flex items-center">
               <Image 
                 src="/images/valorant-logo.svg" 
@@ -41,13 +40,13 @@ const Navbar = () => {
               />
               <span className="ml-2 text-white font-bold text-xl uppercase tracking-wider">Overwatch</span>
             </div>
-          </Link>
+          </a>
 
           {/* Center Navigation */}
           <nav className="hidden lg:flex items-center">
             <ul className="flex items-center">
               <li className="group relative">
-                <Link 
+                <a 
                   href="/game-info" 
                   className="block px-4 py-8 font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors flex items-center"
                 >
@@ -55,29 +54,29 @@ const Navbar = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 w-3 h-3">
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
-                </Link>
+                </a>
               </li>
 
               <li>
-                <Link 
+                <a 
                   href="/heroes" 
                   className="block px-4 py-8 font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors"
                 >
                   HEROES
-                </Link>
+                </a>
               </li>
               
               <li>
-                <Link 
+                <a 
                   href="/news" 
                   className="block px-4 py-8 font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors"
                 >
                   NEWS
-                </Link>
+                </a>
               </li>
 
               <li className="group relative">
-                <Link 
+                <a 
                   href="/support" 
                   className="block px-4 py-8 font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors flex items-center"
                 >
@@ -85,11 +84,11 @@ const Navbar = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 w-3 h-3">
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
-                </Link>
+                </a>
               </li>
 
               <li className="group relative">
-                <Link 
+                <a 
                   href="/our-socials" 
                   className="block px-4 py-8 font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors flex items-center"
                 >
@@ -97,7 +96,7 @@ const Navbar = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 w-3 h-3">
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
-                </Link>
+                </a>
               </li>
 
            
@@ -109,12 +108,12 @@ const Navbar = () => {
             <button className="text-white hover:text-overwatch-blue transition-colors p-2">
               <Search className="h-5 w-5" />
             </button>
-            <Link 
+            <a 
               href="/download"
               className="hidden lg:inline-flex bg-overwatch-blue hover:bg-overwatch-blue/90 transition-colors text-white uppercase text-[14px] tracking-widest px-8 py-2 rounded-md font-bold shadow-md"
             >
               PLAY NOW
-            </Link>
+            </a>
             
             {/* Mobile menu button */}
             <button
@@ -141,60 +140,60 @@ const Navbar = () => {
           <nav className="px-4 py-6">
             <ul className="space-y-4">
               <li>
-                <Link
+                <a
                   href="/game-info"
                   className="font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors block py-3"
                 >
                   GAME INFO
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="/heroes"
                   className="font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors block py-3"
                 >
                   HEROES
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="/news"
                   className="font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors block py-3"
                 >
                   NEWS
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="/support"
                   className="font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors block py-3"
                 >
                   SUPPORT
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="/our-socials"
                   className="font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors block py-3"
                 >
                   OUR SOCIALS
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="/esports"
                   className="font-sans uppercase text-[14px] text-white hover:text-overwatch-blue tracking-widest transition-colors block py-3"
                 >
                   ESPORTS
-                </Link>
+                </a>
               </li>
               <li className="pt-4">
-                <Link
+                <a
                   href="/download"
                   className="inline-flex bg-overwatch-blue hover:bg-overwatch-blue/90 transition-colors text-white uppercase text-[14px] tracking-widest px-8 py-3 rounded-md font-bold shadow-md"
                 >
                   PLAY NOW
-                </Link>
+                </a>
               </li>
             </ul>
           </nav>

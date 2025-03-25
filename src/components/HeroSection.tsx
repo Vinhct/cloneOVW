@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const HeroSection = () => {
@@ -21,26 +19,24 @@ const HeroSection = () => {
   }, []);
 
   // Parallax effect values
-  const backgroundY = scrollY * 0.5;
   const titleY = scrollY * 0.2;
   const subtitleY = scrollY * 0.3;
 
   return (
     <section className="relative w-full overflow-hidden min-h-screen">
-      {/* Background Image with Parallax */}
-      <div 
-        className="absolute inset-0 transition-transform duration-700 ease-out"
-        style={{ transform: `translateY(${backgroundY}px)` }}
-      >
-        <Image
-          src="/images/hero-bg.jpg"
-          alt="Overwatch Hero Background"
-          fill
-          className="object-cover object-center"
-          priority
-          onLoad={() => setIsLoaded(true)}
-        />
-        <div className="absolute inset-0 bg-overwatch-blue-dark/50 mix-blend-multiply"></div>
+      {/* YouTube Video Background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="relative w-full h-full pt-[56.25%]">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/UOxkGD8qRB4?autoplay=1&mute=0&loop=1&playlist=UOxkGD8qRB4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=http://localhost:3000"
+            title="Overwatch 2 Trailer"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="absolute inset-0 bg-overwatch-blue-dark/60 mix-blend-multiply"></div>
         
         {/* Overlay geometric shapes - Overwatch style */}
         <div className="absolute inset-0">
@@ -67,9 +63,9 @@ const HeroSection = () => {
               Tham gia cùng các anh hùng từ khắp nơi trên thế giới. Chiến đấu cho tương lai trong các trận chiến đội hình 5v5 đầy kịch tính.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/game-info" className="overwatch-btn-primary transform hover:scale-105 transition-transform">
+              <a href="/game-info" className="overwatch-btn-primary transform hover:scale-105 transition-transform">
                 TÌM HIỂU THÊM
-              </Link>
+              </a>
               <button className="overwatch-btn-secondary transform hover:scale-105 transition-transform">
                 CHƠI NGAY
               </button>

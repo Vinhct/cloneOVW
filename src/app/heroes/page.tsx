@@ -107,14 +107,17 @@ export default function Heroes() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
-      <ParticlesEffect />
+    <div className="min-h-screen bg-gray-900 text-white relative">
+      {/* Particles effect với z-index thấp hơn */}
+      <div className="absolute inset-0 z-0">
+        <ParticlesEffect />
+      </div>
       
       {/* Hero Banner */}
-      <div className="relative h-[40vh] overflow-hidden">
+      <div className="relative h-[40vh] overflow-hidden z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 z-10" />
         <Image 
-          src="/images/heroes-banner.jpg" 
+          src="/images/heroes-banner.png" 
           alt="Heroes Banner" 
           fill 
           className="object-cover opacity-50"
@@ -139,8 +142,30 @@ export default function Heroes() {
         </div>
       </div>
       
-      {/* Search and Filters */}
-      <div className="container mx-auto px-4 py-8">
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-12 relative z-10">
+        <div className="mb-12 text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-5xl md:text-6xl font-bold mb-4"
+          >
+            <NeonGlowEffect primaryColor="#ff4655" intensity={5}>
+              HEROES
+            </NeonGlowEffect>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+          >
+            Choose your hero and join the battle. Each hero has unique abilities and playstyles.
+          </motion.p>
+        </div>
+        
+        {/* Search and Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}

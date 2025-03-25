@@ -43,9 +43,9 @@ export default function Home() {
             enableParticles={true}
             enableScanLine={true}
             enablePageTransition={true}
-            enableAmbientSound={true}
+            enableAmbientSound={false}
             pageTransitionType="glitch"
-            ambientSoundVolume={0.15}
+            ambientSoundVolume={0}
           />
         </>
       )}
