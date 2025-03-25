@@ -114,38 +114,61 @@ export default function Heroes() {
       </div>
       
       {/* Hero Banner */}
-      <div className="relative h-[40vh] overflow-hidden z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 z-10" />
-        <Image 
-          src="/images/heroes-banner.png" 
-          alt="Heroes Banner" 
-          fill 
-          className="object-cover opacity-50"
-          priority
-        />
-        <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center relative z-20">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <GlitchEffect text="HEROES OVERVIEW" className="text-5xl md:text-7xl font-bold text-center mb-4" />
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl text-center text-gray-300 max-w-3xl"
-          >
-            Explore our roster of powerful heroes with unique abilities and playstyles
-          </motion.p>
+      <section className="relative w-full overflow-hidden min-h-screen">
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <Image 
+            src="/images/heroes-banner.png" 
+            alt="Heroes Banner" 
+            fill 
+            className="object-cover object-center opacity-90"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/50 to-gray-900"></div>
+          
+          {/* Overlay geometric shapes - Overwatch style */}
+          <div className="absolute inset-0">
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 border-4 border-primary-blue/30 rounded-full opacity-50 animate-pulse"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 border-2 border-secondary-blue/20 rounded-full opacity-30 animate-ping" style={{animationDuration: '3s'}}></div>
+            <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-accent-orange/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '4s'}}></div>
+          </div>
         </div>
-      </div>
+
+        {/* Content */}
+        <div className="relative h-screen flex items-center">
+          <div 
+            className="valorant-container z-10 transition-all duration-1000"
+          >
+            <h1 className="overwatch-heading text-6xl md:text-7xl lg:text-8xl mb-4 text-white drop-shadow-lg">
+              HEROES <span className="text-primary-blue">ROSTER</span>
+            </h1>
+            <div className="max-w-xl transition-all duration-1000 delay-300">
+              <p className="text-lg md:text-xl text-gray-200 mb-8 drop-shadow-md">
+                Choose your hero and master their unique abilities to dominate the battlefield
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a href="#heroes-list" className="overwatch-btn-primary transform hover:scale-105 transition-transform">
+                  EXPLORE HEROES
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-opacity duration-1000 ${window.scrollY > 50 ? 'opacity-0' : 'opacity-100'}`}>
+          <div className="flex flex-col items-center animate-bounce">
+            <span className="text-white text-sm mb-2">CUỘN XUỐNG</span>
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </div>
+      </section>
       
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12 relative z-10">
+      <div id="heroes-list" className="container mx-auto px-4 py-12 relative z-10">
         <div className="mb-12 text-center">
-          <motion.h1 
+          <motion.h2 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -154,7 +177,7 @@ export default function Heroes() {
             <NeonGlowEffect primaryColor="#ff4655" intensity={5}>
               HEROES
             </NeonGlowEffect>
-          </motion.h1>
+          </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

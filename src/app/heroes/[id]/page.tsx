@@ -2,7 +2,6 @@
 
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Character, charactersApi } from '@/data/characters';
 import { motion, AnimatePresence } from 'framer-motion';
 import ParticlesEffect from '@/components/effects/ParticlesEffect';
@@ -90,11 +89,9 @@ export default function HeroDetail({ params }: { params: { id: string } }) {
             >
               Try Again
             </button>
-            <Link href="/heroes">
-              <button className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors">
-                Back to Heroes
-              </button>
-            </Link>
+            <a href="/heroes" className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors inline-block">
+              Back to Heroes
+            </a>
           </div>
         </div>
       </div>
@@ -477,12 +474,12 @@ export default function HeroDetail({ params }: { params: { id: string } }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <Link 
+              <a 
                 href="/heroes" 
                 className="inline-block bg-gradient-to-r from-overwatch-blue to-blue-600 hover:from-overwatch-blue hover:to-blue-500 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transform hover:-translate-y-1"
               >
                 ← Back to Heroes
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
         </div>
